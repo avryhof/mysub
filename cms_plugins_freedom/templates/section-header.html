@@ -1,0 +1,8 @@
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+    <link rel="stylesheet" href="{% static "css/section-header.css" %}">
+{% endaddtoblock %}
+<div class="section-header wow fadeInDown" data-wow-duration="500" data-wow-delay="100">
+    <h3>{{ instance.heading_prefix }} <strong>{{ instance.emphasis_word }}</strong></h3>
+    <p>{{ instance.sub_heading }}</p>
+</div>

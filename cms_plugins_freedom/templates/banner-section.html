@@ -1,0 +1,23 @@
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+    <link rel="stylesheet" href="{% static "css/banner-section.css" %}">
+{% endaddtoblock %}
+{% addtoblock "js" %}
+    <script src="{% static "js/banner-section.js" %}"></script>
+{% endaddtoblock %}
+<section class="banner-section"
+        {% if instance.background_image %}
+         style="background-image: url({{ instance.background_image.url }});"
+        {% endif %}
+        {{ instance.attributes_str }}>
+    <div class="banner-text-animate">
+        <h2><span class="txt-prefix">{{ instance.text_prefix }}</span> <span
+                class="txt-rotate"
+                data-period="{{ instance.transition_delay }}"
+                data-rotate='{{ words }}'></span></h2>
+        <p class="txt-subheading">{{ instance.subheading }}</p>
+    </div>
+    <div class="mouse wow fadeInLeft" data-wow-duration="2s" data-wow-delay="5s">
+        <div class="scroll"></div>
+    </div>
+</section>

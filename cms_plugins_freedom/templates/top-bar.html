@@ -1,0 +1,46 @@
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+    <link rel="stylesheet" href="{% static "css/top-bar.css" %}">
+{% endaddtoblock %}
+<div class="top_bar" style="background: {{ instance.background_color }}; color: {{ instance.foreground_color }};">
+    <div class="top_bar_container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+                        <ul class="top_bar_contact_list">
+                            {% if instance.prompt_text %}
+                                <li>
+                                    <div class="question">{{ instance.prompt_text }}</div>
+                                </li>
+                            {% endif %}
+                            {% if instance.phone %}
+                                <li>
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <div>{{ instance.phone }}</div>
+                                </li>
+                            {% endif %}
+                            {% if instance.email %}
+                                <li>
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                    <div>
+                                        {% if instance.link_email %}<a href="mailto:{{ instance.email }}">{% endif %}
+                                        {{ instance.email }}
+                                        {% if instance.link_email %}</a>{% endif %}
+                                    </div>
+                                </li>
+                            {% endif %}
+                        </ul>
+                        <div class="top_bar_login ml-auto">
+                            <div class="login_button" style="background: {{ instance.login_background_color }};">
+                                <a href="{{ instance.get_link }}" target="{{ instance.target }}" style="color: {{ instance.login_foreground_color }};">
+                                    {{ instance.title }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

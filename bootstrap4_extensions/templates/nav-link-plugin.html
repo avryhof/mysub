@@ -1,0 +1,22 @@
+{% load cms_tags %}{% spaceless %}
+
+    {# this needs to be in one line for rendering purpose #}
+{% endspaceless %}
+<a href="{{ instance.get_link }}"
+        {% if instance.target %} target="{{ instance.target }}"{% endif %}
+        {% if instance.title %} title="{{ instance.title }}"{% endif %}
+            class="{{ instance.class_str }}"
+        {% if instance.dropdown %}
+            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+        {% endif %}
+        {{ instance.attributes_str }}>
+        {{ instance.title }}
+</a>
+{% if instance.child_plugin_instances %}
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+{% endif %}
+{% spaceless %}
+
+{% endspaceless %}

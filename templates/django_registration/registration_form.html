@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n bootstrap4 %}
+
+{% block content %}
+    <form method="post" action="../django-registration-templates/registration">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <input type="submit" class="btn btn-primary" value="{% trans 'Submit' %}"/>
+    </form>
+{% endblock %}

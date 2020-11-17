@@ -1,0 +1,14 @@
+{% load cms_tags %}
+<{{ instance.tag_type }}
+    id="{{ instance.title|slugify|default_if_none:'' }}"
+    class="{{ instance.class_str }}"
+    {% if instance.show_background_image %}
+        style="background-image: url({{ instance.background_image.url }}); background-size: {{ instance.background_size_class }};"
+    {% endif %}
+    {{ instance.attributes_str }}>
+    {% if instance.child_plugin_instances %}
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    {% endif %}
+</{{ instance.tag_type }}>

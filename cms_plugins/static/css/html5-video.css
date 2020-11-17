@@ -1,0 +1,12 @@
+.embed-responsive {
+    min-width: 640px;
+    min-height: 480px;
+}
+.embed-responsive-16by9 {
+    width: 720px !important;
+    height: 480px !important;
+}
+.embed-responsive-4by3 {
+    width: 640px !important;
+    height: 480px !important;
+}

@@ -1,0 +1,35 @@
+{% load static bootstrap4 bolierplate cms_tags sekizai_tags %}
+<!doctype html>
+<html class="no-js" lang="{% language_code %}">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% page_attribute "page_title" %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% touch_icons %}
+
+    {% bootstrap_css %}
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% block css %}
+    {% endblock %}
+    {% render_block "css" %}
+</head>
+<body>
+{% cms_toolbar %}
+{% include "_browser_warning.html" %}
+
+{% placeholder "content" %}
+
+{% include "_boilerplate_js.html" %}
+{% bootstrap_javascript %}
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% block js %}
+{% endblock %}
+{% render_block "js" %}
+
+</body>
+</html>

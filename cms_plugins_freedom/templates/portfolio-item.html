@@ -1,0 +1,13 @@
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+    <link rel="stylesheet" href="{% static "css/portfolio-item.css" %}">
+{% endaddtoblock %}
+<div class="each-item" {{ instance.attributes_str }}><img class="port-image" src="{{ instance.image.url }}"
+                                                          alt="{{ instance.title }}"/>
+    <div class="cap1">
+        <h3>{{ instance.title }}</h3>
+        <p>{{ instance.sub_heading }}</p>
+    </div>
+    <div class="cap2"><a href="{{ instance.get_link }}" target="{{ instance.target }}" class="text-center"><i
+            class="fas {{ instance.icon }}"></i></a></div>
+</div>

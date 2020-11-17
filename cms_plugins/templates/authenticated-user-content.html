@@ -1,0 +1,18 @@
+{% load cms_tags %}
+{% if instance.show_to == "authenticated_users" %}
+    {% if user.is_authenticated %}
+        {% if instance.child_plugin_instances %}
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% elif instance.show_to == "unauthenticated_users" %}
+    {% if not user.is_authenticated %}
+        {% if instance.child_plugin_instances %}
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endif %}

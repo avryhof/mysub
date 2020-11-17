@@ -1,0 +1,30 @@
+.banner-section {
+  display: block;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  position: relative;
+  min-height: 640px;
+  /* ----- Banner text -----*/
+}
+.banner-section .banner-text-animate {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+}
+.banner-section .banner-text-animate h2 {
+  color: #fff;
+  font-size: 55px;
+}
+.banner-section .banner-text-animate h2 > span {
+  color: #02cee0;
+}
+.banner-section .banner-text-animate p {
+  letter-spacing: 4px;
+  font-size: 14px;
+  color: #fff;
+}
+
+/*# sourceMappingURL=banner-section.css.map */

@@ -1,0 +1,44 @@
+/* ----- Section Header -----*/
+.section-header {
+	margin: 0 auto;
+	display: table;
+	margin-bottom: 75px;
+}
+.section-header h3 {
+	font-size: 40px;
+	margin-bottom: 10px;
+	text-align: center;
+	font-weight: 300;
+	position: relative;
+}
+.section-header h3:before {
+	background: url(../images/header.png);
+	height: 50px;
+	width: 23px;
+	position: absolute;
+	content: "";
+	top: 13px;
+	left: -60px;
+}
+.section-header h3:after {
+	background: url(../images/header.png);
+	height: 50px;
+	width: 23px;
+	position: absolute;
+	content: "";
+	top: 13px;
+	right: -60px;
+	transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+}
+.section-header h3 strong {
+	font-weight: 600;
+}
+.section-header p {
+	letter-spacing: 10px;
+	text-align: center;
+	font-size: 14px;
+}

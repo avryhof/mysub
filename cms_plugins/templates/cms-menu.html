@@ -1,0 +1,18 @@
+{% load static bootstrap4 cms_tags menu_tags %}
+    <ul id="menu-top-nav" class="nav {{ instance.css_classes }}">
+        {% show_menu 0 1 100 100 "cms-nav-menu.html" %}
+    </ul>
+    {% if user.is_authenticated %}
+        <ul id="menu-user" class="nav">
+            {#                            <li class="nav-item menu-logout">#}
+            {#                                <a href="{% url 'logout' %}">#}
+            {#                                    Log Out#}
+            {#                                </a>#}
+            {#                            </li>#}
+            {#                            <li class="nav-item menu-myaccount">#}
+            {#                                <a href="{% url 'myaccount' %}">#}
+            {#                                    My Account#}
+            {#                                </a>#}
+            {#                            </li>#}
+        </ul>
+    {% endif %}

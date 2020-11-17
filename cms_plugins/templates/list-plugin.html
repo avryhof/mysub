@@ -1,0 +1,18 @@
+{% load cms_tags %}
+{% if instance.list_type == 'ul' %}
+    <{{ instance.list_type }} {{ instance.attributes_str }} style="list-style-type:{{ instance.list_style_type }};">
+        {% if instance.child_plugin_instances %}
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        {% endif %}
+    </{{ instance.list_type }}>
+{% elif instance.list_type == 'ol' %}
+    <{{ instance.list_type }} {{ instance.attributes_str }} type="{{ instance.ordered_list_type }}" start="{{ instance.ordered_list_start }}">
+        {% if instance.child_plugin_instances %}
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        {% endif %}
+    </{{ instance.list_type }}>
+{% endif %}

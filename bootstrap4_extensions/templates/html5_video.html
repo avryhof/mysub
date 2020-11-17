@@ -1,0 +1,10 @@
+{% load static sekizai_tags %}
+{% addtoblock "css" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/html5-video.css' %}">
+{% endaddtoblock %}
+<div class="embed-responsive embed-responsive-{{ instance.aspect_ratio }}" {{ instance.attributes_str }}>
+    <video controls poster="{{ instance.video_file.poster }}">
+        <source src="{{ instance.video_file.url }}" type="video/mp4" title="{{ instance.title }}">
+        Your browser does not support the video tag.
+    </video>
+</div>

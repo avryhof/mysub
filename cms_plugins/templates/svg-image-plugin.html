@@ -1,0 +1,4 @@
+{% load cms_tags %}
+{% if instance.get_link %}<a href="{{ instance.get_link }}">{% endif %}
+<img src="{{ instance.svg_image.url }}" alt="{{ instance.alt_text }}" {{ instance.attributes_str }}>
+{% if instance.get_link %}</a>{% endif %}

@@ -1,0 +1,19 @@
+{% load cms_tags sekizai_tags static %}
+{% addtoblock "css" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/expander-plugin.min.css' %}">
+{% endaddtoblock %}
+<div class="expander {{ instance.class_str }}" {{ instance.attributes_str }}>
+    <input id="{{ instance.slug }}-control" class="expander-control" type="checkbox">
+    <label for="{{ instance.slug }}-control" class="expander-heading">
+        <span class="expander-closed"><i class="fas fa-plus"></i></span>
+        <span class="expander-open"><i class="fas fa-minus"></i></span>
+        {{ instance.text }}
+    </label>
+    <div class="expander-body" id="{{ instance.slug }}-body">
+        {% if instance.child_plugin_instances %}
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>

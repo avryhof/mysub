@@ -1,0 +1,8 @@
+{% load cms_tags %}
+<div id="{{ instance.title|slugify|default_if_none:'' }}" {{ instance.attributes_str }}>
+    {% if instance.child_plugin_instances %}
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    {% endif %}
+</div>

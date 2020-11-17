@@ -1,0 +1,11 @@
+{% load cms_tags %}
+<a class="dropdown-item" href="{{ instance.get_link }}"{% if instance.target %} target="{{ instance.target }}"{% endif %}
+        {% if instance.title %} title="{{ instance.title }}"{% endif %}>
+    {% if instance.child_plugin_instances %}
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    {% else %}
+        {{ instance.title }}
+    {% endif %}
+</a>

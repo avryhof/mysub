@@ -1,0 +1,28 @@
+.banner-section {
+	display: block;
+	background-color: rgba(0, 0, 0, 1.0);
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	position: relative;
+	min-height: 640px;
+	/* ----- Banner text -----*/
+	.banner-text-animate {
+		width: 100%;
+		text-align: center;
+		position: absolute;
+		top: 40%;
+		h2 {
+			color: #fff;
+			font-size: 55px;
+		}
+		h2 > span {
+			color: #02cee0;
+		}
+		p {
+			letter-spacing: 4px;
+			font-size: 14px;
+			color: #fff;
+		}
+	}
+}
