@@ -125,7 +125,34 @@ WSGI_APPLICATION = "mysub.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3",}}
+DATABASES = {
+    "default": {
+        "ENGINE": os.environ.get("MYSUB_DB_ENGINE"),
+        "NAME": os.environ.get("MYSUB_DB_NAME"),
+        "USER": os.environ.get("MYSUB_DB_USER"),
+        "PASSWORD": os.environ.get("MYSUB_DB_PASSWORD"),
+        "HOST": os.environ.get("MYSUB_DB_HOST"),
+        "PORT": os.environ.get("MYSUB_DB_PORT"),
+        "CONN_MAX_AGE": 600,
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "ENGINE": os.environ.get("MYSUB_DB_ENGINE"),
+        "NAME": os.environ.get("MYSUB_DB_NAME"),
+        "USER": os.environ.get("MYSUB_DB_USER"),
+        "PASSWORD": os.environ.get("MYSUB_DB_PASSWORD"),
+        "HOST": os.environ.get("MYSUB_DB_HOST"),
+        "PORT": os.environ.get("MYSUB_DB_PORT"),
+        "LOCATION": "cache_data",
+        "TIMEOUT": 600,
+        "CACHE_MIDDLEWARE_ALIAS": "default",
+        "CACHE_MIDDLEWARE_KEY_PREFIX": "proactrx_",
+        "OPTIONS": {"MAX_ENTRIES": 5000},
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
