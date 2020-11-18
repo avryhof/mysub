@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "dy(yd7$_%jj2c^f!n%rmxn23uyz94191yotqp4--8a=_%#_mso"
+SECRET_KEY = os.environ.get("MYSUB_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -219,4 +219,4 @@ DJANGOCMS_BOOTSTRAP4_USE_ICONS = True
 # --------------------- Django Registration -----------------------------------
 ACCOUNT_ACTIVATION_DAYS = 3
 REGISTRATION_OPEN = True
-REGISTRATION_SALT = "asdfjurjaedmjsfksdfoui-024j2m3rkmjas90df877$%^&*"
+REGISTRATION_SALT = os.environ.get("MYSUB_REGISTRATION_SALT")
