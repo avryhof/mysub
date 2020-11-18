@@ -11,6 +11,8 @@ from bootstrap4_extensions.models import (
     NavDropDownMenuConfig,
     NavDropDownItemConfig,
     NavDropDownDividerConfig,
+    NavBarPluginConfig,
+    NavBarBrandPluginConfig,
 )
 
 
@@ -27,6 +29,40 @@ class HTML5VideoPlugin(CMSPluginBase):
 
 
 plugin_pool.register_plugin(HTML5VideoPlugin)
+
+
+class NavBarPlugin(CMSPluginBase):
+    model = NavBarPluginConfig
+    name = _("Nav Bar")
+    render_template = "nav-bar-plugin.html"
+    allow_children = True
+    module = _(app_name)
+
+    def render(self, context, instance, placeholder):
+        context = super(NavBarPlugin, self).render(context, instance, placeholder)
+        context.update({"instance": instance})
+
+        return context
+
+
+plugin_pool.register_plugin(NavBarPlugin)
+
+
+class NavBarBrandPlugin(CMSPluginBase):
+    model = NavBarBrandPluginConfig
+    name = _("Nav Bar Brand")
+    render_template = "nav-bar-brand-plugin.html"
+    allow_children = True
+    module = _(app_name)
+
+    def render(self, context, instance, placeholder):
+        context = super(NavBarBrandPlugin, self).render(context, instance, placeholder)
+        context.update({"instance": instance})
+
+        return context
+
+
+plugin_pool.register_plugin(NavBarBrandPlugin)
 
 
 class NavPlugin(CMSPluginBase):
@@ -88,7 +124,9 @@ class NavDropDownMenuPlugin(CMSPluginBase):
     module = _(app_name)
 
     def render(self, context, instance, placeholder):
-        context = super(NavDropDownMenuPlugin, self).render(context, instance, placeholder)
+        context = super(NavDropDownMenuPlugin, self).render(
+            context, instance, placeholder
+        )
         context.update({"instance": instance})
 
         return context
@@ -105,7 +143,9 @@ class NavDropDownItemPlugin(CMSPluginBase):
     module = _(app_name)
 
     def render(self, context, instance, placeholder):
-        context = super(NavDropDownItemPlugin, self).render(context, instance, placeholder)
+        context = super(NavDropDownItemPlugin, self).render(
+            context, instance, placeholder
+        )
         context.update({"instance": instance})
 
         return context
@@ -122,7 +162,9 @@ class NavDropDownDividerPlugin(CMSPluginBase):
     module = _(app_name)
 
     def render(self, context, instance, placeholder):
-        context = super(NavDropDownDividerPlugin, self).render(context, instance, placeholder)
+        context = super(NavDropDownDividerPlugin, self).render(
+            context, instance, placeholder
+        )
         context.update({"instance": instance})
 
         return context

@@ -32,24 +32,41 @@ def touch_icons(overwrite=False):
     icon_path = os.path.join(static_root, "favicons")
 
     icon_sizes = getattr(
-        settings, "ICON_SIZES", [16, 32, 57, 60, 64, 72, 76, 96, 114, 120, 144, 152, 180, 192, 256, 512]
+        settings,
+        "ICON_SIZES",
+        [16, 32, 57, 60, 64, 72, 76, 96, 114, 120, 144, 152, 180, 192, 256, 512],
     )
 
     icons = []
     for icon_size in icon_sizes:
         icon_url = url_join(icon_path, "favicon-%ix%i.png" % (icon_size, icon_size))
 
-        icons.append('<link rel="apple-touch-icon" sizes="%ix%i" href="%s">' % (icon_size, icon_size, icon_url))
-        icons.append('<link rel="icon" type="image/png" sizes="%ix%i"  href="%s">' % (icon_size, icon_size, icon_url))
+        icons.append(
+            '<link rel="apple-touch-icon" sizes="%ix%i" href="%s">'
+            % (icon_size, icon_size, icon_url)
+        )
+        icons.append(
+            '<link rel="icon" type="image/png" sizes="%ix%i"  href="%s">'
+            % (icon_size, icon_size, icon_url)
+        )
 
     icons.append(
-        '<meta name="msapplication-TileImage" content="%s">' % url_join(icon_path, "favicon-%ix%i.png" % (144, 144))
+        '<meta name="msapplication-TileImage" content="%s">'
+        % url_join(icon_path, "favicon-%ix%i.png" % (144, 144))
     )
-    icons.append('<meta name="msapplication-TileColor" content="%s">' % getattr(settings, "TILE_COLOR", "#FFFFFF"))
-    icons.append('<meta name="theme-color" content="%s">' % getattr(settings, "THEME_COLOR", "#FFFFFF"))
+    icons.append(
+        '<meta name="msapplication-TileColor" content="%s">'
+        % getattr(settings, "TILE_COLOR", "#FFFFFF")
+    )
+    icons.append(
+        '<meta name="theme-color" content="%s">'
+        % getattr(settings, "THEME_COLOR", "#FFFFFF")
+    )
 
     favicon_url = url_join(icon_path, "favicon.ico")
-    icons.append('<link rel="shortcut icon" href="%s" type="image/x-icon">' % favicon_url)
+    icons.append(
+        '<link rel="shortcut icon" href="%s" type="image/x-icon">' % favicon_url
+    )
     icons.append('<link rel="icon" href="%s" type="image/x-icon">' % favicon_url)
 
     manifest_url = url_join(icon_path, "manifest.json")

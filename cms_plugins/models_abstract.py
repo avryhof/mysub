@@ -14,7 +14,7 @@ class PluginAbstractLink(CMSPlugin):
         abstract = True
 
     def get_short_description(self):
-        retn = self.get_link()
+        retn = self.get_link
 
         if self.title:
             retn = self.title

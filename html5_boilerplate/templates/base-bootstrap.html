@@ -20,9 +20,9 @@
 <body>
 {% cms_toolbar %}
 {% include "_browser_warning.html" %}
-
+{% static_placeholder "navigation" %}
 {% placeholder "content" %}
-
+{% static_placeholder "footer" %}
 {% include "_boilerplate_js.html" %}
 {% bootstrap_javascript %}
 <script src="{% static 'js/plugins.js' %}"></script>

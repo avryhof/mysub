@@ -1,0 +1,19 @@
+{% load cms_tags %}
+{% if instance.get_link == "#" %}
+    <span class="navbar-brand" {{ instance.attributes_str }}>
+{% else %}
+    <a class="navbar-brand"
+            {% if instance.target %} target="{{ instance.target }}"{% endif %}
+            {% if instance.title %} title="{{ instance.title }}"{% endif %}
+            {{ instance.attributes_str }}>
+{% endif %}
+{% if instance.child_plugin_instances %}
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+{% endif %}
+{% if instance.get_link == "#" %}
+    </span>
+{% else %}
+    </a>
+{% endif %}

@@ -4,6 +4,15 @@ from django.db.models import DO_NOTHING
 from djangocms_attributes_field.fields import AttributesField
 from filer.fields.file import FilerFileField
 
+from bootstrap4_extensions.constants import (
+    NAV_STYLE_CHOICES,
+    NAV_ALIGNMENT_CHOICES,
+    CONTENT_START,
+    NAVBAR_BACKGROUND_SCHEME,
+    NAVBAR_DARK,
+    NAVBAR_POSITIONS,
+)
+from cms_plugins.constants import BACKGROUND_CLASSES
 from cms_plugins.models_abstract import PluginAbstractLink
 
 
@@ -12,10 +21,17 @@ class HTML5Video(CMSPlugin):
     FOUR_BY_THREE = "Full/square Screen 4x3"
     SIXTEENBYNINE = "16by9"
     FOURBYTHREE = "4by3"
-    ASPECT_RATIO_CHOICES = ((SIXTEEN_BY_NINE, SIXTEENBYNINE), (FOUR_BY_THREE, FOURBYTHREE))
+    ASPECT_RATIO_CHOICES = (
+        (SIXTEEN_BY_NINE, SIXTEENBYNINE),
+        (FOUR_BY_THREE, FOURBYTHREE),
+    )
     title = models.CharField(max_length=100, blank=True, null=True)
-    video_file = FilerFileField(related_name="html5_video_file", blank=True, null=True, on_delete=DO_NOTHING)
-    aspect_ratio = models.CharField(max_length=25, default=SIXTEEN_BY_NINE, choices=ASPECT_RATIO_CHOICES)
+    video_file = FilerFileField(
+        related_name="html5_video_file", blank=True, null=True, on_delete=DO_NOTHING
+    )
+    aspect_ratio = models.CharField(
+        max_length=25, default=SIXTEEN_BY_NINE, choices=ASPECT_RATIO_CHOICES
+    )
     attributes = AttributesField()
 
     def __str__(self):
@@ -25,28 +41,55 @@ class HTML5Video(CMSPlugin):
         return self.title or self.video_file.url
 
 
-class NavPluginConfig(CMSPlugin):
-    NAV_STYLE_CHOICES = (
-        ("", "Default Nav"),
-        ("nav-tabs", "Tabs"),
-        ("nav-pills", "Pills"),
-        ("nav-fill", "Fill and Justify"),
+class NavBarPluginConfig(CMSPlugin):
+    background_class = models.CharField(
+        max_length=50, choices=BACKGROUND_CLASSES, default="bg-dark"
     )
-    NAV_ALIGNMENT_CHOICES = (
-        ("", "Left Aligned"),
-        ("justify-content-center", "Center Aligned"),
-        ("justify-content-end", "Right Aligned"),
+    background_scheme = models.CharField(
+        max_length=50, choices=NAVBAR_BACKGROUND_SCHEME, default=NAVBAR_DARK
     )
-
-    style = models.CharField(max_length=50, blank=True, null=True, choices=NAV_STYLE_CHOICES)
-    horizontal_alignment = models.CharField(max_length=50, blank=True, null=True, choices=NAV_ALIGNMENT_CHOICES)
-    vertical_desktop = models.BooleanField(default=False)
-    vertical_mobile = models.BooleanField(default=False)
+    navbar_position = models.CharField(
+        max_length=50, blank=True, choices=NAVBAR_POSITIONS, default=""
+    )
     attributes = AttributesField()
 
     @property
     def class_str(self):
-        class_list = ["nav"]
+        class_list = [
+            "navbar",
+            self.background_scheme,
+            self.background_class,
+            self.navbar_position,
+        ]
+
+        return " ".join(class_list)
+
+
+class NavBarBrandPluginConfig(PluginAbstractLink):
+    attributes = AttributesField()
+
+    def __str__(self):
+        retn = "Navbar Brand: %s" % self.get_link
+
+        return retn
+
+
+class NavPluginConfig(CMSPlugin):
+    style = models.CharField(
+        max_length=50, blank=True, choices=NAV_STYLE_CHOICES, default=""
+    )
+    background_class = models.CharField(
+        max_length=50, choices=BACKGROUND_CLASSES, default="bg-dark"
+    )
+    horizontal_alignment = models.CharField(
+        max_length=50, choices=NAV_ALIGNMENT_CHOICES, default=CONTENT_START
+    )
+    vertical_desktop = models.BooleanField(default=False)
+    vertical_mobile = models.BooleanField(default=False)
+
+    @property
+    def class_str(self):
+        class_list = ["nav", self.background_class]
 
         if self.style:
             class_list.append(self.style)
@@ -91,7 +134,7 @@ class NavLinkPluginConfig(PluginAbstractLink):
         return " ".join(class_list)
 
     def __str__(self):
-        retn = "Nav Link: %s" % self.get_link()
+        retn = "Nav Link: %s" % self.get_link
 
         if self.title:
             retn = "Nav Link: %s" % self.title
