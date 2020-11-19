@@ -1,12 +1,16 @@
 .cms-toolbar-expanded body {
-  padding-top: 80px; }
-  .cms-toolbar-expanded body .navbar {
-    top: 40px; }
+  padding-top: 80px;
+}
+.cms-toolbar-expanded body .navbar {
+  top: 40px;
+}
 
 section {
-  clear: both; }
+  clear: both;
+}
 
 .banner-text-animate {
-  font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace; }
+  font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+}
 
 /*# sourceMappingURL=common.css.map */

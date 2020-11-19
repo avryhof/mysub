@@ -13,6 +13,11 @@ from bootstrap4_extensions.models import (
     NavDropDownDividerConfig,
     NavBarPluginConfig,
     NavBarBrandPluginConfig,
+    ModalTriggerConfig,
+    ModalPluginConfig,
+    ModalBodyPluginConfig,
+    ModalFooterPluginConfig,
+    ModalCloseButtonPluginConfig,
 )
 
 
@@ -24,11 +29,96 @@ class HTML5VideoPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context = super(HTML5VideoPlugin, self).render(context, instance, placeholder)
+        context.update({"instance": instance})
 
         return context
 
 
 plugin_pool.register_plugin(HTML5VideoPlugin)
+
+
+class ModalPlugin(CMSPluginBase):
+    model = ModalPluginConfig
+    name = _("Modal Dialog")
+    render_template = "modal-plugin.html"
+    allow_children = True
+    module = _(app_name)
+
+    def render(self, context, instance, placeholder):
+        context = super(ModalPlugin, self).render(context, instance, placeholder)
+        context.update({"instance": instance})
+
+        return context
+
+
+plugin_pool.register_plugin(ModalPlugin)
+
+
+class ModalBodyPlugin(CMSPluginBase):
+    model = ModalBodyPluginConfig
+    name = _("Modal Body")
+    render_template = "modal-body-plugin.html"
+    allow_children = True
+    module = _(app_name)
+
+    def render(self, context, instance, placeholder):
+        context = super(ModalBodyPlugin, self).render(context, instance, placeholder)
+        context.update({"instance": instance})
+
+        return context
+
+
+plugin_pool.register_plugin(ModalBodyPlugin)
+
+
+class ModalCloseButtonPlugin(CMSPluginBase):
+    model = ModalCloseButtonPluginConfig
+    name = _("Modal Close Button")
+    render_template = "modal-close-button-plugin.html"
+    allow_children = True
+    module = _(app_name)
+
+    def render(self, context, instance, placeholder):
+        context = super(ModalCloseButtonPlugin, self).render(context, instance, placeholder)
+        context.update({"instance": instance})
+
+        return context
+
+
+plugin_pool.register_plugin(ModalCloseButtonPlugin)
+
+
+class ModalFooterPlugin(CMSPluginBase):
+    model = ModalFooterPluginConfig
+    name = _("Modal Footer")
+    render_template = "modal-footer-plugin.html"
+    allow_children = True
+    module = _(app_name)
+
+    def render(self, context, instance, placeholder):
+        context = super(ModalFooterPlugin, self).render(context, instance, placeholder)
+        context.update({"instance": instance})
+
+        return context
+
+
+plugin_pool.register_plugin(ModalFooterPlugin)
+
+
+class ModalTriggerPlugin(CMSPluginBase):
+    model = ModalTriggerConfig
+    name = _("Modal Trigger")
+    render_template = "modal-trigger-plugin.html"
+    module = _(app_name)
+
+    def render(self, context, instance, placeholder):
+        context = super(ModalTriggerPlugin, self).render(context, instance, placeholder)
+        context.update({"instance": instance})
+
+        return context
+
+
+plugin_pool.register_plugin(ModalTriggerPlugin)
 
 
 class NavBarPlugin(CMSPluginBase):
@@ -124,9 +214,7 @@ class NavDropDownMenuPlugin(CMSPluginBase):
     module = _(app_name)
 
     def render(self, context, instance, placeholder):
-        context = super(NavDropDownMenuPlugin, self).render(
-            context, instance, placeholder
-        )
+        context = super(NavDropDownMenuPlugin, self).render(context, instance, placeholder)
         context.update({"instance": instance})
 
         return context
@@ -143,9 +231,7 @@ class NavDropDownItemPlugin(CMSPluginBase):
     module = _(app_name)
 
     def render(self, context, instance, placeholder):
-        context = super(NavDropDownItemPlugin, self).render(
-            context, instance, placeholder
-        )
+        context = super(NavDropDownItemPlugin, self).render(context, instance, placeholder)
         context.update({"instance": instance})
 
         return context
@@ -162,9 +248,7 @@ class NavDropDownDividerPlugin(CMSPluginBase):
     module = _(app_name)
 
     def render(self, context, instance, placeholder):
-        context = super(NavDropDownDividerPlugin, self).render(
-            context, instance, placeholder
-        )
+        context = super(NavDropDownDividerPlugin, self).render(context, instance, placeholder)
         context.update({"instance": instance})
 
         return context

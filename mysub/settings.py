@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     "djangocms_bootstrap4.contrib.bootstrap4_utilities",
     "bootstrap4_extensions",
     "djangocms_transfer",
+    "registration_cms_plugins",
     "rest_framework",
     "cms_plugins",
     "cms_plugins_freedom",
@@ -158,10 +159,10 @@ CACHES = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator", },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
 
 # Internationalization
@@ -250,3 +251,6 @@ DJANGOCMS_BOOTSTRAP4_USE_ICONS = True
 ACCOUNT_ACTIVATION_DAYS = 3
 REGISTRATION_OPEN = True
 REGISTRATION_SALT = os.environ.get("MYSUB_REGISTRATION_SALT")
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"

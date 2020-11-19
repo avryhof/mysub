@@ -2,7 +2,7 @@
 {% load i18n bootstrap4 %}
 
 {% block content %}
-    <form method="post" action="../django-registration-templates/registration">
+    <form method="post" action="{% url "django_registration_register" %}">
         {% csrf_token %}
         {% bootstrap_form form %}
 

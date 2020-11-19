@@ -24,6 +24,11 @@ LINK_TARGET_CHOICES = (
     ("_top", "Full Window (break frames)"),
 )
 
+MODAL_TRIGGER_TYPES = (
+    ("a", "Link"),
+    ("button", "Button"),
+)
+
 NAV_STYLE_CHOICES = (
     ("", "Default Nav"),
     ("nav-tabs", "Tabs"),
