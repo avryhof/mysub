@@ -1,6 +1,17 @@
 import datetime
 
-from django.db.models import Model, BooleanField, CharField, ForeignKey, CASCADE, IntegerField, DateTimeField
+from django.contrib.auth import get_user_model
+from django.db.models import (
+    Model,
+    BooleanField,
+    CharField,
+    ForeignKey,
+    CASCADE,
+    IntegerField,
+    DateTimeField,
+    TextField,
+    URLField,
+)
 from django_extensions.db.fields.json import JSONField
 from oauthlib.common import generate_token
 
@@ -10,7 +21,9 @@ from .tools import aware_utcnow, make_utc_aware, minutes
 
 class Application(Model):
     enabled = BooleanField(default=True)
+    owner = ForeignKey(get_user_model(), null=True, on_delete=CASCADE)
     app_name = CharField(max_length=200, blank=True, null=True)
+    app_description = TextField(null=True)
     client_id = CharField(max_length=200, blank=True, null=True)
     client_secret = CharField(max_length=200, blank=True, null=True)
     limit_by_ip = BooleanField(default=False)
@@ -32,6 +45,11 @@ class Application(Model):
             self.client_secret = generate_client_secret()
 
         super().save(force_insert, force_update, using, update_fields)
+
+
+class ApplicationRedirects(Model):
+    app = ForeignKey(Application, blank=True, null=True, on_delete=CASCADE)
+    callback_url = URLField(blank=True, null=True)
 
 
 class AppToken(Model):
