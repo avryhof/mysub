@@ -36,6 +36,7 @@ easy-thumbnails==2.7
 html5lib==1.1
 idna==2.10
 importlib-metadata==2.0.0
+python-memcached
 oauthlib==3.1.0
 Pillow==8.0.1
 psycopg2-binary==2.8.6

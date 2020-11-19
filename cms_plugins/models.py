@@ -173,7 +173,7 @@ class ListItem(CMSPlugin):
         return "List item %s" % str(self.pk)
 
 
-class PlainTextPlugin(CMSPlugin):
+class PlainTextPluginConfig(CMSPlugin):
     text = models.TextField(blank=True, null=True)
     text_class = models.CharField(max_length=50, choices=TEXT_CLASSES, blank=True, null=True)
     background_class = models.CharField(max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True)

@@ -12,7 +12,7 @@ from bootstrap4_extensions.constants import (
     NAVBAR_DARK,
     NAVBAR_POSITIONS,
 )
-from cms_plugins.constants import BACKGROUND_CLASSES
+from cms_plugins.constants import BACKGROUND_CLASSES, TEXT_CLASSES
 from cms_plugins.models_abstract import PluginAbstractLink
 
 
@@ -121,6 +121,12 @@ class NavItem(CMSPlugin):
 
 
 class NavLinkPluginConfig(PluginAbstractLink):
+    text_class = models.CharField(
+        max_length=50, choices=TEXT_CLASSES, blank=True, null=True
+    )
+    background_class = models.CharField(
+        max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True
+    )
     dropdown = models.BooleanField(default=False, null=False)
     attributes = AttributesField()
 
@@ -130,6 +136,12 @@ class NavLinkPluginConfig(PluginAbstractLink):
 
         if self.dropdown:
             class_list.append("dropdown-toggle")
+
+        if self.text_class:
+            class_list.append(self.text_class)
+
+        if self.background_class:
+            class_list.append(self.background_class)
 
         return " ".join(class_list)
 
@@ -143,11 +155,23 @@ class NavLinkPluginConfig(PluginAbstractLink):
 
 
 class NavDropDownMenuConfig(CMSPlugin):
+    text_class = models.CharField(
+        max_length=50, choices=TEXT_CLASSES, blank=True, null=True
+    )
+    background_class = models.CharField(
+        max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True
+    )
     attributes = AttributesField()
 
     @property
     def class_str(self):
         class_list = ["dropdown-menu"]
+
+        if self.text_class:
+            class_list.append(self.text_class)
+
+        if self.background_class:
+            class_list.append(self.background_class)
 
         return " ".join(class_list)
 

@@ -14,7 +14,7 @@ from .models import (
     BlockTagPluginConfig,
     ExpanderPluginConfig,
     HeadingPluginConfig,
-    AuthenticatedUserPluginConfig,
+    AuthenticatedUserPluginConfig, PlainTextPluginConfig,
 )
 
 
@@ -149,7 +149,7 @@ plugin_pool.register_plugin(NavMenuPlugin)
 
 
 class PlainTextPlugin(CMSPluginBase):
-    model = BlockTagPluginConfig
+    model = PlainTextPluginConfig
     name = _("Plain Text")
     render_template = "plain-text-plugin.html"
     allow_children = True
