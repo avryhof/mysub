@@ -7,10 +7,17 @@ from .models import Application, AppToken
 from .responses import INVALID_CLIENT_RESPONSE, SuccessResponse, INVALID_REQUEST_RESPONSE
 
 
+# @api_view(["POST"])
+# @permission_classes((AuthorizedAppPermission,))
+# @authentication_classes(())
+# def authorization_view(request):
+
+
 @api_view(["POST"])
 @permission_classes((AuthorizedAppPermission,))
 @authentication_classes(())
 def auth_token_view(request):
+    grant_type = request.POST.get("grant_type")
     client_id = request.POST.get("client_id")
     client_secret = request.POST.get("client_secret")
 

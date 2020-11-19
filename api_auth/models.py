@@ -22,12 +22,34 @@ from .tools import aware_utcnow, make_utc_aware, minutes
 class Application(Model):
     enabled = BooleanField(default=True)
     owner = ForeignKey(get_user_model(), null=True, on_delete=CASCADE)
-    app_name = CharField(max_length=200, blank=True, null=True)
-    app_description = TextField(null=True)
-    client_id = CharField(max_length=200, blank=True, null=True)
-    client_secret = CharField(max_length=200, blank=True, null=True)
+    app_name = CharField(
+        max_length=200,
+        blank=True,
+        null=True,
+        verbose_name="Application Name",
+        help_text="Something users will recognize and trust",
+    )
+    app_description = TextField(
+        blank=True,
+        null=True,
+        verbose_name="Application description",
+        help_text="This is displayed to all users of your application.",
+    )
+    homepage_url = URLField(blank=True, null=True, help_text="The full URL to your application homepage. (optional)")
+    client_id = CharField(
+        max_length=200,
+        blank=True,
+        null=True,
+        help_text="This value is considered public and can be put into visible configurations.",
+    )
+    client_secret = CharField(max_length=200, blank=True, null=True, help_text="Keep this value confidential.")
     limit_by_ip = BooleanField(default=False)
-    ip_addresses = JSONField(blank=True, null=True)
+    ip_addresses = JSONField(
+        blank=True,
+        null=True,
+        help_text="A list if ip addresses that can access this endpoint with your credentials. "
+                  "(ex: ['123.45.67.1','123.45.67.2','123.45.67.3'])",
+    )
 
     def __str__(self):
         retn = self.app_name
