@@ -1,0 +1,22 @@
+{% load cms_tags %}
+<div class="modal fade"
+     id="{{ instance.target_name }}"
+     {% if instance.static_backdrop %}data-backdrop="static" data-keyboard="false"{% endif %}
+     tabindex="-1"
+     aria-labelledby="{{ instance.target_name }}-label" aria-hidden="true">
+    <div class="modal-dialog {% if instance.vertically_centered %}modal-dialog-centered{% endif %} {% if instance.scrollable %}modal-dialog-scrollable{% endif %}">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{ instance.target_name }}-label">{{ instance.label }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% if instance.child_plugin_instances %}
+                {% for plugin in instance.child_plugin_instances %}
+                    {% render_plugin plugin %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>

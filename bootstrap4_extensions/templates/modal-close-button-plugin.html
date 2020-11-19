@@ -1,0 +1,9 @@
+{% load cms_tags %}
+<button type="button" class="{{ instance.class_str }}" data-dismiss="modal">
+    {% if instance.child_plugin_instances %}
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    {% endif %}
+    {{ instance.label }}
+</button>
