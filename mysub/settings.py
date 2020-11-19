@@ -224,6 +224,9 @@ CMS_TEMPLATES = [
     ("home.html", "Home page template"),
 ]
 
+X_FRAME_OPTIONS = "SAMEORIGIN"
+XS_SHARING_ALLOWED_METHODS = ["POST", "GET", "OPTIONS", "PUT", "DELETE"]
+
 # --------------------- Django Filer -------------------------------------------
 FILER_DEBUG = False
 FILER_ENABLE_LOGGING = False
