@@ -1,4 +1,6 @@
-# mysub - Name TBA
+# SonicJammer
+
+https://sonicjammer.com/
 
 Freedom is not free, but this software is. Welcome to the source code repository for mysub.
 
