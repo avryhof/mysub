@@ -1,6 +1,8 @@
+from django.shortcuts import redirect
 from oauthlib.oauth2.rfc6749.tokens import random_token_generator
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 
+from cms_plugins.helpers import resolve_link
 from .api_permissions import AuthorizedAppPermission, AuthorizedTokenPermission
 from .helpers import clean_expired_tokens, check_token, check_ip_address
 from .models import Application, AppToken
@@ -11,6 +13,10 @@ from .responses import INVALID_CLIENT_RESPONSE, SuccessResponse, INVALID_REQUEST
 # @permission_classes((AuthorizedAppPermission,))
 # @authentication_classes(())
 # def authorization_view(request):
+
+def callback_view(request, *args, **kwargs):
+
+    return redirect(resolve_link("home"))
 
 
 @api_view(["POST"])

@@ -18,8 +18,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from api_auth.views import callback_view
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("o/callback/", callback_view, "callback-view"),
+    path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
     path("accounts/", include("registration_cms_plugins.urls")),
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
@@ -29,4 +33,6 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns = urlpatterns + static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )

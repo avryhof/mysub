@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "oauth2_provider",
+    "corsheaders",
     "django_extensions",
     "bootstrap4",
     "html5_boilerplate",
@@ -84,6 +86,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "cms.middleware.utils.ApphookReloadMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -116,9 +119,9 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "sekizai.context_processors.sekizai",
                 "cms.context_processors.cms_settings",
-            ],
+            ]
         },
-    },
+    }
 ]
 
 WSGI_APPLICATION = "mysub.wsgi.application"
@@ -159,10 +162,12 @@ CACHES = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator", },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 # Internationalization
@@ -170,9 +175,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en"
 
-LANGUAGES = [
-    ("en", "English"),
-]
+LANGUAGES = [("en", "English")]
 
 TIME_ZONE = "UTC"
 
@@ -219,11 +222,11 @@ REST_FRAMEWORK = {
 CMS_PERMISSION = True
 CMS_TOOLBAR_ANONYMOUS_ON = False
 
-TEXT_SAVE_IMAGE_FUNCTION = "cmsplugin_filer_image.integrations.ckeditor.create_image_plugin"
+TEXT_SAVE_IMAGE_FUNCTION = (
+    "cmsplugin_filer_image.integrations.ckeditor.create_image_plugin"
+)
 
-CMS_TEMPLATES = [
-    ("home.html", "Home page template"),
-]
+CMS_TEMPLATES = [("home.html", "Home page template")]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 XS_SHARING_ALLOWED_METHODS = ["POST", "GET", "OPTIONS", "PUT", "DELETE"]
@@ -239,10 +242,7 @@ THUMBNAIL_PROCESSORS = (
     "filer.thumbnail_processors.scale_and_crop_with_subject_location",
     "easy_thumbnails.processors.filters",
 )
-CMSPLUGIN_FILER_IMAGE_STYLE_CHOICES = (
-    ("default", "Default"),
-    ("boxed", "Boxed"),
-)
+CMSPLUGIN_FILER_IMAGE_STYLE_CHOICES = (("default", "Default"), ("boxed", "Boxed"))
 CMSPLUGIN_FILER_IMAGE_DEFAULT_STYLE = "boxed"
 
 DJANGOCMS_BOOTSTRAP4_USE_ICONS = True
