@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "api_auth",
     "oauth2_provider",
     "corsheaders",
     "django_extensions",
@@ -47,7 +48,6 @@ INSTALLED_APPS = [
     "menus",
     "treebeard",
     "sekizai",
-    "api_auth",
     "djangocms_text_ckeditor",
     "easy_thumbnails",
     "filer",
@@ -162,9 +162,7 @@ CACHES = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -200,6 +198,13 @@ STATICFILES_FINDERS = (
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+# --------------- oAuth2 provider ---------------------------------------------
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    "SCOPES": {"read": "Read scope", "write": "Write scope", "groups": "Access to your groups"}
+}
+
 # --------------- CORS Header Settings for Rest Framework -------------------
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_PREFLIGHT_MAX_AGE = 1800
@@ -211,7 +216,13 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.FormParser",
         "rest_framework.parsers.MultiPartParser",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAdminUser",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        # "rest_framework.permissions.IsAdminUser",
+        "rest_framework.permissions.IsAuthenticated",
+    ),
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
@@ -222,9 +233,7 @@ REST_FRAMEWORK = {
 CMS_PERMISSION = True
 CMS_TOOLBAR_ANONYMOUS_ON = False
 
-TEXT_SAVE_IMAGE_FUNCTION = (
-    "cmsplugin_filer_image.integrations.ckeditor.create_image_plugin"
-)
+TEXT_SAVE_IMAGE_FUNCTION = "cmsplugin_filer_image.integrations.ckeditor.create_image_plugin"
 
 CMS_TEMPLATES = [("home.html", "Home page template")]
 

@@ -41,6 +41,7 @@ python-memcached
 oauthlib==3.1.0
 Pillow==8.0.1
 psycopg2-binary==2.8.6
+pyOpenSSL
 python-dateutil==2.8.1
 pytz==2020.4
 requests==2.25.0
@@ -51,4 +52,5 @@ sqlparse==0.4.1
 Unidecode==1.1.1
 urllib3==1.26.2
 webencodings==0.5.1
+Werkzeug
 zipp==3.4.0

@@ -4,6 +4,9 @@
 .cms-toolbar-expanded body .navbar {
   top: 40px;
 }
+.cms-toolbar-expanded .vertical-center {
+  top: 80px;
+}
 
 section {
   clear: both;
@@ -11,6 +14,36 @@ section {
 
 .banner-text-animate {
   font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+}
+
+.vertical-center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.block-center {
+  max-width: 500px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px auto;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.block-center .block-center-heading {
+  margin-bottom: 10px;
 }
 
 /*# sourceMappingURL=common.css.map */

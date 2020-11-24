@@ -2,10 +2,14 @@
 {% load i18n bootstrap4 %}
 
 {% block content %}
-    <form method="post" action="{% url "django_registration_register" %}">
-        {% csrf_token %}
-        {% bootstrap_form form %}
+    <div class="vertical-center">
+        <div class="block-center">
+            <form method="post" action="{% url "django_registration_register" %}">
+                {% csrf_token %}
+                {% bootstrap_form form %}
 
-        <input type="submit" class="btn btn-primary" value="{% trans 'Submit' %}"/>
-    </form>
+                <input type="submit" class="btn btn-primary" value="{% trans 'Submit' %}"/>
+            </form>
+        </div>
+    </div>
 {% endblock %}

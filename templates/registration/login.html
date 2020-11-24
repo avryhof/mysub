@@ -2,14 +2,21 @@
 {% load i18n bootstrap4 %}
 
 {% block content %}
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-    {% bootstrap_form form %}
+    <div class="vertical-center">
+        <div class="block-center">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {% bootstrap_form form %}
 
-  <input type="submit" class="btn btn-primary" value="{% trans 'Log in' %}" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-<p>{% trans "Forgot password" %}? <a href="{% url 'password_reset' %}">{% trans "Reset it" %}</a>!</p>
-<p>{% trans "Not member" %}? <a href="{% url 'django_registration_register' %}">{% trans "Register" %}</a>!</p>
+                {% buttons %}
+                    <input type="submit" class="btn btn-primary" value="{% trans 'Log in' %}"/>
+                {% endbuttons %}
+                <input type="hidden" name="next" value="{{ next }}"/>
+            </form>
+            <p>
+                <a href="{% url 'django_registration_register' %}">{% trans "Register" %}</a> |
+                <a href="{% url 'password_reset' %}">{% trans "Forgot password" %}</a>
+            </p>
+        </div>
+    </div>
 {% endblock %}

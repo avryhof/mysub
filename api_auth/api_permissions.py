@@ -1,7 +1,7 @@
+from oauth2_provider.models import AccessToken, Application
 from rest_framework import permissions
 
 from utilities.debugging import log_message
-from .models import Application, AppToken
 
 
 class AuthorizedAppPermission(permissions.BasePermission):
@@ -30,8 +30,8 @@ class AuthorizedTokenPermission(permissions.BasePermission):
             token_type, token = auth.split()
 
             try:
-                valid_token = AppToken.objects.get(token_type__iexact=token_type, token=token)
-            except AppToken.DoesNotExist:
+                valid_token = AccessToken.objects.get(token=token)
+            except AccessToken.DoesNotExist:
                 pass
             else:
                 is_authorized = True
