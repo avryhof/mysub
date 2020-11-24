@@ -77,3 +77,6 @@ follow suit.  I don't want anyone getting into my servers, and I'm sure you don'
 * [ctrlaltca](https://github.com/ctrlaltca/google-home-subsonic) - For the code inspiration
 * [DigitalOcean](https://www.digitalocean.com/) - For cheap hosting
 * [Mail-in-a-Box](https://mailinabox.email) - For having a DNS API, so I don't need to pay for yet another service to deal with a Dynamic IP address
+
+## Related Projects
+* [sub-g](https://github.com/avryhof/sub-g) - Reference docs, and the code I originally extracted from one of my other projects to start this one.
