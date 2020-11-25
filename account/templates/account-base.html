@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load i18n static bootstrap4 sekizai_tags %}
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/account.css" %}">
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm-3" id="account-menu">
+                {% include "_account-menu.html" %}
+            </div>
+            <div class="col col-sm-9">
+                {% block account_page %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

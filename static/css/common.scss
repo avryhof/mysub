@@ -1,18 +1,37 @@
 .cms-toolbar-expanded {
   body {
     padding-top: 80px;
+
     .navbar {
       top: 40px;
     }
   }
+
   .vertical-center {
     top: 80px;
   }
 }
 
+body {
+  padding-top: 40px;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  min-height: 50px;
+}
+
+footer {
+  margin-top: auto;
+}
+
 section {
   clear: both;
 }
+
 .banner-text-animate {
   font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
 }
@@ -38,10 +57,11 @@ section {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
+
 .block-center .block-center-heading {
   margin-bottom: 10px;
 }

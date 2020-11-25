@@ -1,0 +1,10 @@
+<nav class="nav flex-column">
+    {% url "account-overview" as account_overview %}
+    <a class="nav-link {% if account_overview in request.get_absolute_url %}active{% endif %}"
+       href="{{ account_overview }}">
+        <i class="fas fa-home"></i> Account Overview
+    </a>
+    <a class="nav-link" href="#">
+        <i class="fas fa-gear"></i> Account Credentials
+    </a>
+</nav>

@@ -28,6 +28,7 @@ urlpatterns = [
     path("accounts/", include("registration_cms_plugins.urls")),
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("account/", include("account.urls")),
     path("google/", include("google_action.urls")),
     path("", include("cms.urls")),
 ]

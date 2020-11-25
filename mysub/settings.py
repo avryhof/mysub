@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     "cms_plugins_freedom",
     "subsonic",
     "google_action",
+    "account",
 ]
 
 MIDDLEWARE = [
