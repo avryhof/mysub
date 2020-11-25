@@ -1,9 +1,12 @@
+$navbarHeight: 56px;
+$cmsToolbarHeight: 46px;
+
 .cms-toolbar-expanded {
   body {
-    padding-top: 80px;
+    padding-top: $navbarHeight + $cmsToolbarHeight;
 
     .navbar {
-      top: 40px;
+      top: $cmsToolbarHeight;
     }
   }
 
@@ -13,7 +16,7 @@
 }
 
 body {
-  padding-top: 40px;
+  padding-top: $navbarHeight;
   height: 100vh;
   margin: 0;
   display: flex;
@@ -21,10 +24,7 @@ body {
 }
 
 footer {
-  min-height: 50px;
-}
-
-footer {
+  min-height: $navbarHeight;
   margin-top: auto;
 }
 

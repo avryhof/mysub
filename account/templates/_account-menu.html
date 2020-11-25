@@ -1,4 +1,4 @@
-<nav class="nav flex-column">
+<nav class="nav flex-column bg-dark text-light">
     {% url "account-overview" as account_overview %}
     <a class="nav-link {% if account_overview in request.get_absolute_url %}active{% endif %}"
        href="{{ account_overview }}">

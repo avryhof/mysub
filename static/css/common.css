@@ -1,21 +1,19 @@
 .cms-toolbar-expanded body {
-  padding-top: 80px; }
+  padding-top: 102px; }
   .cms-toolbar-expanded body .navbar {
-    top: 40px; }
+    top: 46px; }
 .cms-toolbar-expanded .vertical-center {
   top: 80px; }
 
 body {
-  padding-top: 40px;
+  padding-top: 56px;
   height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column; }
 
 footer {
-  min-height: 50px; }
-
-footer {
+  min-height: 56px;
   margin-top: auto; }
 
 section {

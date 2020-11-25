@@ -1,5 +1,8 @@
 #account-menu {
   color: #FFFFFF;
   background: #222222; }
+  #account-menu nav .nav-link {
+    font-weight: bold;
+    text-transform: uppercase; }
 
 /*# sourceMappingURL=account.css.map */
