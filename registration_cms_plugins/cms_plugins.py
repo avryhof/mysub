@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_registration.forms import RegistrationForm
 
 from registration_cms_plugins import app_name
+from registration_cms_plugins.forms import CaptchaRegistrationForm
 from registration_cms_plugins.models import (
     RegistrationFormPluginConfig,
     LoginFormPluginConfig,
@@ -74,7 +75,7 @@ class RegistrationFormPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context = super(RegistrationFormPlugin, self).render(context, instance, placeholder)
-        context.update({"form": RegistrationForm, "instance": instance})
+        context.update({"form": CaptchaRegistrationForm, "instance": instance})
 
         return context
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "anymail",
+    "hcaptcha",
     "api_auth",
     "oauth2_provider",
     "corsheaders",
@@ -285,3 +286,7 @@ DEFAULT_FROM_EMAIL = (
     "amos@vryhofresearch.com"
 )  # if you don't already have this in settings
 SERVER_EMAIL = "amos@vryhofresearch.com"  # ditto (default from-email for Django errors)
+
+# hcapcha ---------------------------------------------------------------------
+HCAPTCHA_SITEKEY = os.environ.get("CAPTCHA_KEY")
+HCAPTCHA_SECRET = os.environ.get("CAPTCHA_SECRET")

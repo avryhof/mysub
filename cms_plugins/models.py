@@ -11,33 +11,56 @@ from cms_plugins.constants import (
     BACKGROUND_CLASSES,
     BACKGROUND_SIZE_COVER,
     BACKGROUND_SIZE_CHOICES,
-    HEADING_TYPES, AUTH_USER_CHOICES, AUTHENTICATED_USERS,
+    HEADING_TYPES,
+    AUTH_USER_CHOICES,
+    AUTHENTICATED_USERS,
+    UNAUTHENTICATED_USERS,
 )
 from cms_plugins.models_abstract import PluginAbstractLink
 
 
 class AuthenticatedUserPluginConfig(CMSPlugin):
-    show_to = models.CharField(max_length=100, choices=AUTH_USER_CHOICES, default=AUTHENTICATED_USERS)
+    show_to = models.CharField(
+        max_length=100, choices=AUTH_USER_CHOICES, default=AUTHENTICATED_USERS
+    )
     unauthenticated_message = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return "Authenticated User Content"
+        retn = "Authenticated User Content"
+
+        if self.show_to == UNAUTHENTICATED_USERS:
+            retn = "Unauthenticated User Content"
+
+        return retn
 
     def get_short_description(self):
-        return "Content for Authenticated User"
+        retn = "Authenticated User Content"
+
+        if self.show_to == UNAUTHENTICATED_USERS:
+            retn = "Unauthenticated User Content"
+
+        return retn
 
 
 class BlockTagPluginConfig(CMSPlugin):
-    tag_type = models.CharField(max_length=50, choices=BLOCK_TAGS, blank=True, null=True)
-    text_class = models.CharField(max_length=50, choices=TEXT_CLASSES, blank=True, null=True)
-    background_class = models.CharField(max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True)
+    tag_type = models.CharField(
+        max_length=50, choices=BLOCK_TAGS, blank=True, null=True
+    )
+    text_class = models.CharField(
+        max_length=50, choices=TEXT_CLASSES, blank=True, null=True
+    )
+    background_class = models.CharField(
+        max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True
+    )
     show_background_image = models.BooleanField(default=False)
-    background_image = FilerImageField(blank=True, null=True, related_name="bt_bg_image", on_delete=DO_NOTHING)
+    background_image = FilerImageField(
+        blank=True, null=True, related_name="bt_bg_image", on_delete=DO_NOTHING
+    )
 
     background_size_class = models.CharField(
         max_length=30, default=BACKGROUND_SIZE_COVER, choices=BACKGROUND_SIZE_CHOICES
     )
-    attributes = AttributesField(excluded_keys=("class", "style",))
+    attributes = AttributesField(excluded_keys=("class", "style"))
 
     @property
     def class_str(self):
@@ -65,8 +88,12 @@ class DIVPluginConfig(CMSPlugin):
 
 class ExpanderPluginConfig(CMSPlugin):
     text = models.CharField(max_length=255, blank=True, null=True)
-    text_class = models.CharField(max_length=50, choices=TEXT_CLASSES, blank=True, null=True)
-    background_class = models.CharField(max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True)
+    text_class = models.CharField(
+        max_length=50, choices=TEXT_CLASSES, blank=True, null=True
+    )
+    background_class = models.CharField(
+        max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True
+    )
     attributes = AttributesField()
 
     @property
@@ -94,9 +121,15 @@ class ExpanderPluginConfig(CMSPlugin):
 
 class HeadingPluginConfig(CMSPlugin):
     text = models.CharField(max_length=255, blank=True, null=True)
-    tag_type = models.CharField(max_length=50, choices=HEADING_TYPES, blank=True, null=True)
-    text_class = models.CharField(max_length=50, choices=TEXT_CLASSES, blank=True, null=True)
-    background_class = models.CharField(max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True)
+    tag_type = models.CharField(
+        max_length=50, choices=HEADING_TYPES, blank=True, null=True
+    )
+    text_class = models.CharField(
+        max_length=50, choices=TEXT_CLASSES, blank=True, null=True
+    )
+    background_class = models.CharField(
+        max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True
+    )
     attributes = AttributesField()
 
     @property
@@ -149,12 +182,26 @@ class List(CMSPlugin):
         ORDERED_LIST_ROMAN_NUMERALS,
         ORDERED_LIST_ROMAN_NUMERALS_LC,
     )
-    list_type = models.CharField(max_length=10, blank=False, null=False, default=UNORDERED_LIST[0], choices=LIST_TYPES)
+    list_type = models.CharField(
+        max_length=10,
+        blank=False,
+        null=False,
+        default=UNORDERED_LIST[0],
+        choices=LIST_TYPES,
+    )
     list_style_type = models.CharField(
-        max_length=16, blank=True, null=True, default=LIST_BLANK_CHOICE[0], choices=LIST_STYLE_CHOICES
+        max_length=16,
+        blank=True,
+        null=True,
+        default=LIST_BLANK_CHOICE[0],
+        choices=LIST_STYLE_CHOICES,
     )
     ordered_list_type = models.CharField(
-        max_length=64, blank=True, null=True, default=LIST_BLANK_CHOICE[0], choices=ORDERED_LIST_TYPES
+        max_length=64,
+        blank=True,
+        null=True,
+        default=LIST_BLANK_CHOICE[0],
+        choices=ORDERED_LIST_TYPES,
     )
     ordered_list_start = models.IntegerField(blank=True, null=True, default=None)
     attributes = AttributesField()
@@ -175,8 +222,12 @@ class ListItem(CMSPlugin):
 
 class PlainTextPluginConfig(CMSPlugin):
     text = models.TextField(blank=True, null=True)
-    text_class = models.CharField(max_length=50, choices=TEXT_CLASSES, blank=True, null=True)
-    background_class = models.CharField(max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True)
+    text_class = models.CharField(
+        max_length=50, choices=TEXT_CLASSES, blank=True, null=True
+    )
+    background_class = models.CharField(
+        max_length=50, choices=BACKGROUND_CLASSES, blank=True, null=True
+    )
     attributes = AttributesField()
 
     @property
@@ -224,7 +275,9 @@ class SectionPluginConfig(CMSPlugin):
 
 class SVGImagePluginConfig(PluginAbstractLink):
     alt_text = models.CharField(max_length=255)
-    svg_image = FilerFileField(blank=True, null=True, related_name="svgimage", on_delete=DO_NOTHING)
+    svg_image = FilerFileField(
+        blank=True, null=True, related_name="svgimage", on_delete=DO_NOTHING
+    )
     attributes = AttributesField()
 
     def __str__(self):
