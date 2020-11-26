@@ -1,5 +1,5 @@
 {% load i18n bootstrap4 %}
-<form method="post" action="{% url "django_registration_register" %}">
+<form method="post" action="{% url "captcha-registration" %}">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
