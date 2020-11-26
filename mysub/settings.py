@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "anymail",
     "api_auth",
     "oauth2_provider",
     "corsheaders",
@@ -217,9 +218,7 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.FormParser",
         "rest_framework.parsers.MultiPartParser",
     ),
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
-    ),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("oauth2_provider.contrib.rest_framework.OAuth2Authentication",),
     "DEFAULT_PERMISSION_CLASSES": (
         # "rest_framework.permissions.IsAdminUser",
         "rest_framework.permissions.IsAuthenticated",
@@ -264,3 +263,16 @@ REGISTRATION_SALT = os.environ.get("MYSUB_REGISTRATION_SALT")
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+# ------------------- Anymail -------------------------------------------------
+ANYMAIL = {
+    "MAILGUN_API_KEY": os.environ.get("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": os.environ.get("MAILGUN_SENDER_DOMAIN"),
+}
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
+DEFAULT_FROM_EMAIL = "registration@sonicjammer.com"  # if you don't already have this in settings
+SERVER_EMAIL = "amos@vryhof.net"  # ditto (default from-email for Django errors)
+
+# Use SES: pip install django-anymail[amazon_ses]
+# https://anymail.readthedocs.io/en/v8.1/esps/amazon_ses/
+# EMAIL_BACKEND = "anymail.backends.amazon_ses.EmailBackend"

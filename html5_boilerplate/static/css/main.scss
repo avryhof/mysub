@@ -240,7 +240,7 @@ textarea {
   }
   pre,
   blockquote {
-    border: 1px solid #$printQuoteBorderColor;
+    border: 1px solid $printQuoteBorderColor;
     page-break-inside: avoid;
   }
   /*

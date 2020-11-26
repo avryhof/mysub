@@ -1,6 +1,7 @@
 import datetime
 import fnmatch
 import glob
+import mimetypes
 import os
 import re
 
@@ -124,6 +125,12 @@ def file_get_contents(file_name):
             file_handle.close()
 
     return file_content
+
+
+def get_mime_type(filename):
+    mimetypes.init()
+
+    return mimetypes.guess_type(filename)[0]
 
 
 def file_put_contents(file_name, file_content):

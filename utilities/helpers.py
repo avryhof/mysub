@@ -52,3 +52,14 @@ def convert_keys(input_value):
                     return_value[new_key] = v
 
     return return_value
+
+
+def make_list(thing_that_should_be_a_list):
+    """If it is not a list.  Make it one. Return a list."""
+    if thing_that_should_be_a_list is None:
+        thing_that_should_be_a_list = []
+
+    if not isinstance(thing_that_should_be_a_list, list):
+        thing_that_should_be_a_list = [thing_that_should_be_a_list]
+
+    return thing_that_should_be_a_list
