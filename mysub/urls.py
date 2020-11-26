@@ -23,6 +23,7 @@ urlpatterns = [
     path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
     path("o/", include("api_auth.urls")),
     path("api/", include("api_auth.api_urls")),
+    path("anymail/", include("anymail.urls")),
     path("accounts/", include("registration_cms_plugins.urls")),
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("django.contrib.auth.urls")),

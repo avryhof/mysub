@@ -164,7 +164,9 @@ CACHES = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -204,7 +206,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
-    "SCOPES": {"read": "Read scope", "write": "Write scope", "groups": "Access to your groups"}
+    "SCOPES": {
+        "read": "Read scope",
+        "write": "Write scope",
+        "groups": "Access to your groups",
+    }
 }
 
 # --------------- CORS Header Settings for Rest Framework -------------------
@@ -218,7 +224,9 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.FormParser",
         "rest_framework.parsers.MultiPartParser",
     ),
-    "DEFAULT_AUTHENTICATION_CLASSES": ("oauth2_provider.contrib.rest_framework.OAuth2Authentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
+    ),
     "DEFAULT_PERMISSION_CLASSES": (
         # "rest_framework.permissions.IsAdminUser",
         "rest_framework.permissions.IsAuthenticated",
@@ -233,7 +241,9 @@ REST_FRAMEWORK = {
 CMS_PERMISSION = True
 CMS_TOOLBAR_ANONYMOUS_ON = False
 
-TEXT_SAVE_IMAGE_FUNCTION = "cmsplugin_filer_image.integrations.ckeditor.create_image_plugin"
+TEXT_SAVE_IMAGE_FUNCTION = (
+    "cmsplugin_filer_image.integrations.ckeditor.create_image_plugin"
+)
 
 CMS_TEMPLATES = [("home.html", "Home page template")]
 
@@ -265,9 +275,13 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 # ------------------- Anymail -------------------------------------------------
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 ANYMAIL = {
     "SENDGRID_API_KEY": os.environ.get("SENDGRID_API_KEY"),
+    "WEBHOOK_SECRET": os.environ.get("ANYMAIL_WEBHOOK_SECRET"),
 }
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
-DEFAULT_FROM_EMAIL = "amos@vryhofresearch.com"  # if you don't already have this in settings
+DEFAULT_FROM_EMAIL = (
+    "amos@vryhofresearch.com"
+)  # if you don't already have this in settings
 SERVER_EMAIL = "amos@vryhofresearch.com"  # ditto (default from-email for Django errors)
