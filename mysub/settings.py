@@ -266,13 +266,8 @@ LOGOUT_REDIRECT_URL = "/"
 
 # ------------------- Anymail -------------------------------------------------
 ANYMAIL = {
-    "MAILGUN_API_KEY": os.environ.get("MAILGUN_API_KEY"),
-    "MAILGUN_SENDER_DOMAIN": os.environ.get("MAILGUN_SENDER_DOMAIN"),
+    "SENDGRID_API_KEY": os.environ.get("SENDGRID_API_KEY"),
 }
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
-DEFAULT_FROM_EMAIL = "registration@sonicjammer.com"  # if you don't already have this in settings
-SERVER_EMAIL = "amos@vryhof.net"  # ditto (default from-email for Django errors)
-
-# Use SES: pip install django-anymail[amazon_ses]
-# https://anymail.readthedocs.io/en/v8.1/esps/amazon_ses/
-# EMAIL_BACKEND = "anymail.backends.amazon_ses.EmailBackend"
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+DEFAULT_FROM_EMAIL = "amos@vryhofresearch.com"  # if you don't already have this in settings
+SERVER_EMAIL = "amos@vryhofresearch.com"  # ditto (default from-email for Django errors)
