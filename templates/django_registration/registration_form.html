@@ -4,7 +4,7 @@
 {% block content %}
     <div class="vertical-center">
         <div class="block-center">
-            <form method="post" action="{% url "django_registration_register" %}">
+            <form method="post" action="{% url "captcha-registration" %}">
                 {% csrf_token %}
                 {% bootstrap_form form %}
 
