@@ -37,3 +37,7 @@ def log_out_view(request, *args, **kwargs):
 
 class CaptchaRegistrationView(RegistrationView):
     form_class = CaptchaRegistrationForm
+
+    def get_form_class(self):
+        """Return the form class to use."""
+        return CaptchaRegistrationForm

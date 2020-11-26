@@ -1,8 +1,8 @@
 {% load cms_tags %}
-{% if instance.get_link == "#" %}
+{% if not instance.link %}
     <span class="navbar-brand" {{ instance.attributes_str }}>
 {% else %}
-    <a class="navbar-brand"
+    <a class="navbar-brand" href="{{ instance.get_link }}"
             {% if instance.target %} target="{{ instance.target }}"{% endif %}
             {% if instance.title %} title="{{ instance.title }}"{% endif %}
             {{ instance.attributes_str }}>
@@ -12,7 +12,7 @@
         {% render_plugin plugin %}
     {% endfor %}
 {% endif %}
-{% if instance.get_link == "#" %}
+{% if not instance.link %}
     </span>
 {% else %}
     </a>

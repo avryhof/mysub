@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "account-base.html" %}
 
 {% load i18n %}
-{% block content %}
+{% block account_page %}
     <div class="block-center">
         <h3 class="block-center-heading">{% trans "Your applications" %}</h3>
         {% if applications %}
@@ -16,4 +16,4 @@
             <p>{% trans "No applications defined" %}. <a href="{% url 'oauth2_provider:register' %}">{% trans "Click here" %}</a> {% trans "if you want to register a new one" %}</p>
         {% endif %}
     </div>
-{% endblock content %}
+{% endblock %}

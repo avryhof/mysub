@@ -4,7 +4,14 @@
        href="{{ account_overview }}">
         <i class="fas fa-home"></i> Account Overview
     </a>
-    <a class="nav-link" href="#">
-        <i class="fas fa-cog"></i> Account Credentials
+{#    {% url "oauth2_provider:list" as app_list %}#}
+{#    <a class="nav-link {% if app_list in request.get_absolute_url %}active{% endif %}"#}
+{#       href="{{ app_list }}">#}
+{#        <i class="fas fa-cogs"></i> oAuth Applications#}
+{#    </a>#}
+    {% url "account-credentials" as account_credentials %}
+    <a class="nav-link {% if account_credentials in request.get_absolute_url %}active{% endif %}"
+       href="{{ account_credentials }}">
+        <i class="fas fa-user-cog"></i> Account Credentials
     </a>
 </nav>

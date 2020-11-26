@@ -2,5 +2,18 @@
 
 {% load i18n bootstrap4 %}
 {% block account_page %}
-    <h1>{% trans "Account Overview" %}</h1>
+    <div class="block-center">
+        <h1>{% trans "Account Overview" %}</h1>
+        <h3>{% trans "My Server" %}</h3>
+        {% if server %}
+            <p>{{ server.url }}</p>
+            <a class="btn btn-success btn-sm" href="{% url "edit-server" %}">
+                {% trans "Edit Server" %}
+            </a>
+        {% else %}
+            <a class="btn btn-success" href="{% url "edit-server" %}">
+                {% trans "Add Server" %}
+            </a>
+        {% endif %}
+    </div>
 {% endblock %}
